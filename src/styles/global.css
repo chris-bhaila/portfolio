@@ -24,7 +24,12 @@
     box-sizing: border-box;
   }
 
-  ul, ol {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ul,
+  ol {
     list-style: none;
   }
 
@@ -45,12 +50,19 @@
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
+  .marquee-track {
+    animation: none;
+  }
 }
 
 .reveal {
