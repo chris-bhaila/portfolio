@@ -1,24 +1,31 @@
 ---
+
 ---
 
-<section class="bg-dark px-8 pt-16 pb-20">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-10 items-start">
-
+<section class="bg-dark px-8 pt-24 pb-20">
+  <div
+    class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-10 items-start"
+  >
     <!-- Left: headline + CTA -->
     <div class="reveal">
-      <p class="font-mono text-xs text-white/35 tracking-[0.12em] uppercase mb-6">
+      <p
+        class="font-mono text-xs text-white/35 tracking-[0.12em] uppercase mb-6"
+      >
         <span class="text-accent mr-2">—</span>Web Dev · AI/ML Engineer
       </p>
 
-      <h1 class="font-serif text-[clamp(2.8rem,6vw,4.2rem)] leading-[1.05] tracking-[-0.025em] text-white mb-6">
-        Building things<br>
-        that think<br>
+      <h1
+        class="font-serif text-[clamp(2.8rem,6vw,4.2rem)] leading-[1.05] tracking-[-0.025em] text-white mb-6"
+      >
+        Building things<br />
+        that think<br />
         <em class="text-white/40">&amp; ship.</em>
       </h1>
 
       <p class="text-white/40 text-sm leading-relaxed max-w-md mb-9">
-        I design and build intelligent web products — from trained models to
-        deployed interfaces. Based in Nepal, available worldwide.
+        I design and build intelligent web products, from trained models to
+        deployed interfaces. Final year BCA student shipping real products, from
+        ML models to deployed web applications.
       </p>
 
       <div class="flex flex-wrap gap-3">
@@ -37,62 +44,117 @@
       </div>
     </div>
 
-    <!-- Right: demo widget -->
-    <div class="bg-white/[0.04] border border-white/10 rounded-2xl p-5 reveal">
-      <p class="font-mono text-[10px] text-white/25 tracking-[0.1em] uppercase mb-3">
-        Live demo — MotoVault recommender
+    <div class="bg-white/[0.04] border border-white/10 rounded-2xl p-5 reveal self-start mt-8">
+      <p
+        class="font-mono text-[10px] text-white/25 tracking-[0.1em] uppercase mb-4"
+      >
+        — stack
       </p>
-      <input
-        id="demo-input"
-        type="text"
-        placeholder="e.g. Honda CB350 trail bike..."
-        class="w-full bg-white/[0.06] border border-white/10 rounded-lg px-3 py-2.5 text-white/60 font-mono text-xs placeholder:text-white/20 mb-2 focus:outline-none focus:border-accent/40"
-      />
-      <div
-        id="demo-output"
-        class="bg-white/[0.04] border border-accent/25 rounded-lg px-3 py-2.5 font-mono text-xs text-accent-light leading-relaxed min-h-[64px]"
-      >
-        → awaiting input...
-      </div>
-      <button
-        id="demo-btn"
-        class="w-full mt-2 bg-white/[0.04] border border-accent/25 text-accent-light font-mono text-[11px] py-2 rounded-lg hover:bg-accent/15 transition-colors text-left px-3 cursor-pointer"
-      >
-        ▶ run SBERT similarity
-      </button>
-    </div>
 
+      <div class="flex flex-col gap-4">
+        <div>
+          <p
+            class="font-mono text-[10px] text-accent/60 uppercase tracking-[0.08em] mb-2"
+          >
+            AI / ML
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {
+              [
+                "Python",
+                "PyTorch",
+                "scikit-learn",
+                "SBERT",
+                "DBSCAN",
+                "Django",
+              ].map((skill) => (
+                <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-accent border-accent/30 bg-accent/[0.06]">
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <p
+            class="font-mono text-[10px] text-[#1D9E75]/60 uppercase tracking-[0.08em] mb-2"
+          >
+            Web
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {
+              [
+                "Laravel",
+                "PHP",
+                "JavaScript",
+                "Tailwind CSS",
+                "Alpine.js",
+                "Astro",
+              ].map((skill) => (
+                <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]">
+                  {skill}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <p
+            class="font-mono text-[10px] text-white/25 uppercase tracking-[0.08em] mb-2"
+          >
+            Tools
+          </p>
+          <div class="flex flex-wrap gap-1.5">
+            {
+              ["Git", "MySQL", "PostgreSQL", "Jupyter", "PyCharm"].map(
+                (skill) => (
+                  <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-white/40 border-white/15">
+                    {skill}
+                  </span>
+                ),
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <script>
-  const btn = document.getElementById('demo-btn')
-  const input = document.getElementById('demo-input') as HTMLInputElement
-  const output = document.getElementById('demo-output')
+  const btn = document.getElementById("demo-btn");
+  const input = document.getElementById("demo-input") as HTMLInputElement;
+  const output = document.getElementById("demo-output");
 
   const examples: Record<string, string[]> = {
-    default:  ['Yamaha MT-07', 'Kawasaki Z650', 'Suzuki SV650'],
-    trail:    ['Royal Enfield Himalayan', 'BMW F 850 GS', 'KTM 390 Adventure'],
-    sport:    ['Kawasaki Ninja 400', 'Yamaha YZF-R3', 'Honda CBR500R'],
-    cruiser:  ['Royal Enfield Classic 350', 'Honda Rebel 500', 'Kawasaki Vulcan S'],
-  }
+    default: ["Yamaha MT-07", "Kawasaki Z650", "Suzuki SV650"],
+    trail: ["Royal Enfield Himalayan", "BMW F 850 GS", "KTM 390 Adventure"],
+    sport: ["Kawasaki Ninja 400", "Yamaha YZF-R3", "Honda CBR500R"],
+    cruiser: [
+      "Royal Enfield Classic 350",
+      "Honda Rebel 500",
+      "Kawasaki Vulcan S",
+    ],
+  };
 
   function getRecommendations(query: string): string[] {
-    const q = query.toLowerCase()
-    if (q.includes('trail') || q.includes('adventure')) return examples.trail
-    if (q.includes('sport') || q.includes('fast'))      return examples.sport
-    if (q.includes('cruiser') || q.includes('classic')) return examples.cruiser
-    return examples.default
+    const q = query.toLowerCase();
+    if (q.includes("trail") || q.includes("adventure")) return examples.trail;
+    if (q.includes("sport") || q.includes("fast")) return examples.sport;
+    if (q.includes("cruiser") || q.includes("classic")) return examples.cruiser;
+    return examples.default;
   }
 
-  btn?.addEventListener('click', () => {
-    if (!output || !input) return
-    output.textContent = '→ encoding query with SBERT...'
+  btn?.addEventListener("click", () => {
+    if (!output || !input) return;
+    output.textContent = "→ encoding query with SBERT...";
     setTimeout(() => {
-      const recs = getRecommendations(input.value)
+      const recs = getRecommendations(input.value);
       output.innerHTML = recs
         .map((r, i) => `→ [${(0.97 - i * 0.04).toFixed(2)}] ${r}`)
-        .join('<br>')
-    }, 800)
-  })
+        .join("<br>");
+    }, 800);
+  });
 </script>

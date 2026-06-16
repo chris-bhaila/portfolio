@@ -4,11 +4,53 @@ const projects = [
     title: "Traffic Accident Hotspot Detection",
     description:
       "Live ML system that clusters 1,498 real accident records using DBSCAN to identify 43 hotspots, with Random Forest risk prediction by time, weather, and road type.",
-    tags: ["k-nearest neighbors", "DBSCAN", "Random Forest", "Django"],
+    tags: [
+      "Postgres",
+      "DBSCAN",
+      "OpenStreetMap",
+      "Django",
+      "scikit-learn",
+      "Open-Meteo",
+      "Leaflet.js",
+      "Chart.js",
+    ],
     type: "Academic project",
-    year: "2024",
+    year: "2026",
     link: "https://traffic-hotspot.onrender.com",
     image: "/images/traffic.png",
+    live: true,
+  },
+  {
+    title: "EduNest",
+    description:
+      "Private instructor-led LMS with token-based enrollment, role-based access control, and Google OAuth. Built for focused learning — no marketplace noise, no subscriptions.",
+    tags: [
+      "Laravel",
+      "Repository Design Pattern",
+      "Token-based Enrollment",
+      "Google SSO",
+      "",
+    ],
+    type: "Client project",
+    year: "2026",
+    link: "https://lms.recc.com.np",
+    image: "/images/lms.png",
+    live: true,
+  },
+  {
+    title: "DwellCasa",
+    description:
+      "Hotel management platform for a boutique property in Lalitpur. Built with repository pattern for clean architecture, covering listings, bookings, and a full admin panel.",
+    tags: [
+      "Laravel",
+      "Inventory",
+      "Role-Based Access Control",
+      "Multi-Location Support",
+    ],
+    type: "Client project",
+    year: "2026",
+    link: "https://dwellcasanepal.com",
+    image: "/images/dwellcasa.png",
     live: true,
   },
   {
@@ -18,51 +60,53 @@ const projects = [
     tags: ["Cosine-Similarity", "SBERT", "Python", "all-MiniLM-L6-v2"],
     type: "Academic project",
     year: "2024",
-    link: "#",
+    link: "https://github.com/chris-bhaila/E-commerce-website-with-Product-Recommendation",
     image: "/images/motovault.png",
     live: false,
-  },
-  {
-    title: "EduNest",
-    description:
-      "Private instructor-led LMS with token-based enrollment, role-based access control, and Google OAuth. Built for focused learning — no marketplace noise, no subscriptions.",
-    tags: ["Laravel", "Repository Design Pattern", "Token-based Enrollment", "Google OAuth"],
-    type: "Client project",
-    year: "2025",
-    link: "https://lms.recc.com.np",
-    image: "/images/lms.png",
-    live: true,
-  },
-  {
-    title: "DwellCasa",
-    description:
-      "Hotel management platform for a boutique property in Lalitpur. Built with repository pattern for clean architecture, covering listings, bookings, and a full admin panel.",
-    tags: ["Laravel", "Inventory", "Role-Based Access Control"],
-    type: "Client project",
-    year: "2024",
-    link: "https://dwellcasanepal.com",
-    image: "/images/dwellcasa.png",
-    live: true,
   },
 ];
 
 const tagStyles: Record<string, string> = {
-  "k-nearest neighbors": "text-accent border-accent/30 bg-accent/[0.06]",
-  SBERT: "text-accent border-accent/30 bg-accent/[0.06]",
+  // AI/ML Tools — blue
+  Python: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
+  PyTorch: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
+  "scikit-learn": "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
+  SBERT: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
+  Django: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
+  "all-MiniLM-L6-v2": "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
+  Postgres: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
+
+  // Algorithms — purple
   DBSCAN: "text-accent border-accent/30 bg-accent/[0.06]",
   "Random Forest": "text-accent border-accent/30 bg-accent/[0.06]",
-  Python: "text-accent border-accent/30 bg-accent/[0.06]",
-  Django: "text-accent border-accent/30 bg-accent/[0.06]",
-  "all-MiniLM-L6-v2": "text-accent border-accent/30 bg-accent/[0.06]",
+  "k-nearest neighbors": "text-accent border-accent/30 bg-accent/[0.06]",
   "Cosine-Similarity": "text-accent border-accent/30 bg-accent/[0.06]",
-  Laravel: "text-accent border-accent/30 bg-accent/[0.06]",
+  "Decision Tree": "text-accent border-accent/30 bg-accent/[0.06]",
+  ID3: "text-accent border-accent/30 bg-accent/[0.06]",
+  CNN: "text-accent border-accent/30 bg-accent/[0.06]",
+  "AI/ML": "text-accent border-accent/30 bg-accent/[0.06]",
+
+  // Web / Architecture — green
+  Laravel: "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
   "Repository Design Pattern":
-    "text-accent border-accent/30 bg-accent/[0.06]",
-  Freelance: "text-muted border-cream-border",
-  "Token-based Enrollment": "text-accent border-accent/30 bg-accent/[0.06]",
-  "Google OAuth": "text-accent border-accent/30 bg-accent/[0.06]",
-  Inventory: "text-accent border-accent/30 bg-accent/[0.06]",
-  "Role-Based Access Control": "text-accent border-accent/30 bg-accent/[0.06]",
+    "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
+  "Token-based Enrollment":
+    "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
+  "Role-Based Access Control":
+    "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
+  "Multi-Location Support":
+    "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
+  Inventory: "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
+  Web: "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
+  Live: "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
+
+  // Third-party — amber
+  "Google SSO": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
+  "Google OAuth": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
+  "Open-Meteo": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
+  "Leaflet.js": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
+  OpenStreetMap: "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
+  "Chart.js": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
 };
 ---
 
