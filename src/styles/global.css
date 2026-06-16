@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+@source "./src/components/**/*.astro";
+@source "./src/pages/**/*.astro";
+@source "./src/layouts/**/*.astro";
+
+@theme {
+  --font-serif: 'DM Serif Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-dark: #0D0D0D;
+  --color-cream: #F5F3EE;
+  --color-cream-border: #DDDBD5;
+  --color-ink: #1A1A1A;
+  --color-muted: #888888;
+  --color-accent: #7C6AF7;
+  --color-accent-light: #A89BF8;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  ul, ol {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.marquee-track {
+  display: flex;
+  gap: 0;
+  animation: marquee 28s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}

@@ -1,0 +1,127 @@
+---
+const projects = [
+  {
+    title: 'MotoVault',
+    description:
+      'Semantic product recommendation engine for a motorcycle e-commerce store. Uses SBERT embeddings and cosine similarity to surface relevant bikes based on natural language queries — not just keyword matching.',
+    tags: ['AI/ML', 'SBERT', 'Python'],
+    type: 'Academic project',
+    year: '2024',
+    featured: true,
+    link: '#',
+  },
+  {
+    title: 'Traffic Accident Hotspot Detection',
+    description:
+      'Spatial clustering system that identifies accident-prone road segments using DBSCAN on geolocation data, with Random Forest classification to predict risk levels by time and road condition.',
+    tags: ['AI/ML', 'DBSCAN', 'Random Forest'],
+    type: 'Academic project',
+    year: '2024',
+    featured: false,
+    link: '#',
+  },
+  {
+    title: 'FloraNepal',
+    description:
+      'Full-stack nursery management platform built in Laravel. Handles listings, inventory, and Google OAuth for both mobile and web — deployed and serving real users across Nepal.',
+    tags: ['Laravel', 'Web', 'Freelance'],
+    type: 'Client project',
+    year: '2023',
+    featured: false,
+    link: '#',
+  },
+]
+
+const tagStyles: Record<string, string> = {
+  'AI/ML':         'text-accent border-accent/30 bg-accent/[0.06]',
+  'SBERT':         'text-accent border-accent/30 bg-accent/[0.06]',
+  'DBSCAN':        'text-accent border-accent/30 bg-accent/[0.06]',
+  'Random Forest': 'text-accent border-accent/30 bg-accent/[0.06]',
+  'Python':        'text-accent border-accent/30 bg-accent/[0.06]',
+  'Laravel':       'text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]',
+  'Web':           'text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]',
+  'Freelance':     'text-muted border-cream-border',
+}
+---
+
+<section id="work" class="bg-cream px-8 pb-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-baseline justify-between border-b border-cream-border pb-5 mb-8">
+      <h2 class="font-serif text-2xl text-ink">Selected work</h2>
+      <span class="font-mono text-[11px] text-muted">03 projects</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <!-- Featured card -->
+      {projects.filter((project) => project.featured).map((project) => (
+        <div key={project.title} class="lg:col-span-2 bg-white border border-cream-border rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              {project.tags.map((tag) => (
+                <span key={tag} class={`font-mono text-[10px] px-2.5 py-1 rounded-full border ${tagStyles[tag] ?? 'text-muted border-cream-border'}`}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h3 class="font-serif text-xl text-ink mb-2">{project.title}</h3>
+            <p class="text-muted text-sm leading-relaxed mb-5">{project.description}</p>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[10px] text-muted/60 uppercase tracking-wide">
+                {project.type} · {project.year}
+              </span>
+              <a
+                href={project.link}
+                class="w-7 h-7 rounded-full border border-cream-border flex items-center justify-center text-ink hover:bg-ink hover:text-white transition-colors duration-200"
+                aria-label={`View ${project.title}`}
+              >
+                →
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-dark rounded-xl p-5 font-mono text-[11px] leading-[1.8] whitespace-pre">
+            <span class="text-accent">from</span>
+            <span class="text-white/50"> sentence_transformers </span>
+            <span class="text-accent">import</span>
+            <span class="text-white/50"> SentenceTransformer</span>
+
+            <span class="text-white/30">model = SentenceTransformer(</span>
+            <span class="text-[#5DCAA5]">'all-MiniLM-L6-v2'</span>
+            <span class="text-white/30">)</span>
+            <span class="text-white/30">query_emb = model.encode(query)</span>
+            <span class="text-white/30">scores = cosine_similarity(</span>
+            <span class="text-white/50">[query_emb]</span>
+            <span class="text-white/30">, catalog_emb)</span>
+          </div>
+        </div>
+      ))}
+
+      <!-- Standard cards -->
+      {projects.filter((project) => !project.featured).map((project) => (
+        <div key={project.title} class="bg-white border border-cream-border rounded-2xl p-6 flex flex-col">
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            {project.tags.map((tag) => (
+              <span key={tag} class={`font-mono text-[10px] px-2.5 py-1 rounded-full border ${tagStyles[tag] ?? 'text-muted border-cream-border'}`}>
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h3 class="font-serif text-xl text-ink mb-2">{project.title}</h3>
+          <p class="text-muted text-sm leading-relaxed mb-5 flex-1">{project.description}</p>
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-[10px] text-muted/60 uppercase tracking-wide">
+              {project.type} · {project.year}
+            </span>
+            <a
+              href={project.link}
+              class="w-7 h-7 rounded-full border border-cream-border flex items-center justify-center text-ink hover:bg-ink hover:text-white transition-colors duration-200"
+              aria-label={`View ${project.title}`}
+            >
+              →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
