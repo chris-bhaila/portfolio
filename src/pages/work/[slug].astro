@@ -1,0 +1,27 @@
+---
+import { projects } from '../../data/projects.ts'
+import type { Project } from '../../data/projects.ts'
+import Layout from '../../layouts/Layout.astro'
+import WorkHero from '../../components/work/WorkHero.astro'
+import WorkGallery from '../../components/work/WorkGallery.astro'
+import WorkOverview from '../../components/work/WorkOverview.astro'
+import WorkStack from '../../components/work/WorkStack.astro'
+import WorkImpact from '../../components/work/WorkImpact.astro'
+
+export async function getStaticPaths() {
+  return projects.map((project: typeof projects[number]) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props as { project: Project }
+---
+
+<Layout title={`${project.title} — Chris Bhaila`}>
+  <WorkHero project={project} />
+  <WorkGallery project={project} />
+  <WorkOverview project={project} />
+  <WorkStack project={project} />
+  <WorkImpact project={project} />
+</Layout>

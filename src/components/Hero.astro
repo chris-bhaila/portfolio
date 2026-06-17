@@ -1,160 +1,65 @@
 ---
-
+const stack = [
+  'Python', 'Laravel', 'SBERT', 'DBSCAN',
+  'Random Forest', 'scikit-learn', 'PHP',
+  'Tailwind CSS', 'MySQL', 'Astro',
+  'Cosine Similarity', 'Decision Tree', 'REST APIs',
+  'Postgres', 'Render', 'Vercel', 'GitHub', 'NLP', 'LLMs',
+  'Python', 'Laravel', 'SBERT', 'DBSCAN',
+  'Random Forest', 'scikit-learn', 'PHP',
+  'Tailwind CSS', 'MySQL', 'Astro',
+  'Cosine Similarity', 'Decision Tree', 'REST APIs',
+  'Postgres', 'Render', 'Vercel', 'GitHub', 'NLP', 'LLMs',
+]
 ---
 
-<section class="bg-dark px-8 pt-24 pb-20">
-  <div
-    class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_480px] gap-10 items-start"
-  >
-    <!-- Left: headline + CTA -->
-    <div class="reveal">
-      <p
-        class="font-mono text-xs text-white/35 tracking-[0.12em] uppercase mb-6"
-      >
-        <span class="text-accent mr-2">—</span>Web Dev · AI/ML Engineer
-      </p>
+<section class="bg-dark min-h-[calc(100dvh-3.6rem)] flex flex-col">
 
-      <h1
-        class="font-serif text-[clamp(2.8rem,6vw,4.2rem)] leading-[1.05] tracking-[-0.025em] text-white mb-6"
-      >
-        Building things<br />
-        that think<br />
-        <em class="text-white/40">&amp; ship.</em>
-      </h1>
+  <!-- Center content takes all available space -->
+  <div class="flex-1 flex flex-col items-center justify-center text-center px-6 sm:px-8 py-12">
 
-      <p class="text-white/40 text-sm leading-relaxed max-w-md mb-9">
-        I design and build intelligent web products, from trained models to
-        deployed interfaces. Final year BCA student shipping real products, from
-        ML models to deployed web applications.
-      </p>
-
-      <div class="flex flex-wrap gap-3">
-        <a
-          href="#work"
-          class="bg-accent text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-accent-light transition-colors duration-200"
-        >
-          View my work
-        </a>
-        <a
-          href="#contact"
-          class="text-white/45 text-sm border border-white/15 px-6 py-2.5 rounded-full hover:border-white/30 hover:text-white/70 transition-colors duration-200"
-        >
-          Get in touch
-        </a>
+    <!-- Eyebrow -->
+    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mb-7">
+      <div class="flex items-center gap-3">
+        <span class="w-6 h-px bg-accent hidden sm:inline-block"></span>
+        <p class="font-mono text-[10.5px] tracking-[0.14em] uppercase text-white/30">
+          Web Dev · AI/ML Engineer
+        </p>
       </div>
+      <span class="w-1.5 h-1.5 rounded-full bg-white/10 hidden sm:inline-block"></span>
+      <span class="font-mono text-[10.5px] tracking-[0.1em] text-accent flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
+        Open to work
+      </span>
     </div>
 
-    <div class="bg-white/[0.04] border border-white/10 rounded-2xl p-5 reveal self-start mt-8">
-      <p
-        class="font-mono text-[10px] text-white/25 tracking-[0.1em] uppercase mb-4"
+    <!-- Name -->
+    <h1 class="font-serif text-[clamp(2.8rem,9vw,7rem)] leading-none tracking-[-0.03em] text-white/90 mb-5">
+      Chris Bhaila<span class="text-accent">.</span>
+    </h1>
+
+    <!-- Description -->
+    <p class="text-[13px] text-white/30 leading-relaxed max-w-sm mb-8">
+      Building <span class="text-white/55 font-medium">intelligent web products</span> — from
+      trained models to deployed interfaces. Based in Kathmandu.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center gap-3">
+      <a
+        href="#work"
+        class="font-mono text-[11.5px] font-medium tracking-[0.06em] uppercase bg-accent text-dark px-6 py-2.5 hover:opacity-85 transition-opacity duration-150"
       >
-        — stack
-      </p>
-
-      <div class="flex flex-col gap-4">
-        <div>
-          <p
-            class="font-mono text-[10px] text-accent/60 uppercase tracking-[0.08em] mb-2"
-          >
-            AI / ML
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            {
-              [
-                "Python",
-                "PyTorch",
-                "scikit-learn",
-                "SBERT",
-                "DBSCAN",
-                "Django",
-              ].map((skill) => (
-                <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-accent border-accent/30 bg-accent/[0.06]">
-                  {skill}
-                </span>
-              ))
-            }
-          </div>
-        </div>
-
-        <div>
-          <p
-            class="font-mono text-[10px] text-[#1D9E75]/60 uppercase tracking-[0.08em] mb-2"
-          >
-            Web
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            {
-              [
-                "Laravel",
-                "PHP",
-                "JavaScript",
-                "Tailwind CSS",
-                "Alpine.js",
-                "Astro",
-              ].map((skill) => (
-                <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]">
-                  {skill}
-                </span>
-              ))
-            }
-          </div>
-        </div>
-
-        <div>
-          <p
-            class="font-mono text-[10px] text-white/25 uppercase tracking-[0.08em] mb-2"
-          >
-            Tools
-          </p>
-          <div class="flex flex-wrap gap-1.5">
-            {
-              ["Git", "MySQL", "PostgreSQL", "Jupyter", "PyCharm"].map(
-                (skill) => (
-                  <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-white/40 border-white/15">
-                    {skill}
-                  </span>
-                ),
-              )
-            }
-          </div>
-        </div>
-      </div>
+        View my work
+      </a>
+      <a
+        href="#contact"
+        class="font-mono text-[11.5px] tracking-[0.06em] uppercase text-white/30 border border-white/10 px-6 py-2.5 hover:text-white/60 hover:border-white/25 transition-colors duration-150"
+      >
+        Get in touch
+      </a>
     </div>
+
   </div>
+
 </section>
-
-<script>
-  const btn = document.getElementById("demo-btn");
-  const input = document.getElementById("demo-input") as HTMLInputElement;
-  const output = document.getElementById("demo-output");
-
-  const examples: Record<string, string[]> = {
-    default: ["Yamaha MT-07", "Kawasaki Z650", "Suzuki SV650"],
-    trail: ["Royal Enfield Himalayan", "BMW F 850 GS", "KTM 390 Adventure"],
-    sport: ["Kawasaki Ninja 400", "Yamaha YZF-R3", "Honda CBR500R"],
-    cruiser: [
-      "Royal Enfield Classic 350",
-      "Honda Rebel 500",
-      "Kawasaki Vulcan S",
-    ],
-  };
-
-  function getRecommendations(query: string): string[] {
-    const q = query.toLowerCase();
-    if (q.includes("trail") || q.includes("adventure")) return examples.trail;
-    if (q.includes("sport") || q.includes("fast")) return examples.sport;
-    if (q.includes("cruiser") || q.includes("classic")) return examples.cruiser;
-    return examples.default;
-  }
-
-  btn?.addEventListener("click", () => {
-    if (!output || !input) return;
-    output.textContent = "→ encoding query with SBERT...";
-    setTimeout(() => {
-      const recs = getRecommendations(input.value);
-      output.innerHTML = recs
-        .map((r, i) => `→ [${(0.97 - i * 0.04).toFixed(2)}] ${r}`)
-        .join("<br>");
-    }, 800);
-  });
-</script>
