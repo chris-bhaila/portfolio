@@ -66,7 +66,7 @@ export const projects: Project[] = [
     type: 'Client project',
     year: '2026',
     live: 'https://dwellcasanepal.com',
-    github: 'https://github.com/chris-bhaila/DwellCasa',
+    github: null,
     tagline: 'Hotel management platform for a boutique property in Lalitpur — listings, bookings, inventory, and a full admin panel.',
     overview: 'DwellCasa is a complete hotel management platform built for a boutique property in Lalitpur. The client needed to manage listings, handle bookings, track inventory across multiple locations, and run day-to-day operations from a single admin panel — without paying for an off-the-shelf SaaS tool that would be over-engineered for their scale.',
     approach: 'Built with the repository pattern for a clean separation between data access and business logic, which made the multi-location inventory support significantly easier to reason about. Role-based access control ensures front desk staff, managers, and admins each see only what they need. Google SSO was included to simplify staff onboarding.',
