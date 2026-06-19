@@ -2,6 +2,7 @@
 import { projects } from '../../data/projects.ts'
 import type { Project } from '../../data/projects.ts'
 import Layout from '../../layouts/Layout.astro'
+import Nav from '../../components/Nav.astro'
 import WorkHero from '../../components/work/WorkHero.astro'
 import WorkGallery from '../../components/work/WorkGallery.astro'
 import WorkOverview from '../../components/work/WorkOverview.astro'
@@ -19,6 +20,7 @@ const { project } = Astro.props as { project: Project }
 ---
 
 <Layout title={`${project.title} — Chris Bhaila`}>
+  <Nav />
   <WorkHero project={project} />
   <WorkGallery project={project} />
   <WorkOverview project={project} />

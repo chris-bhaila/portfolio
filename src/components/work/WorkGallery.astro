@@ -8,93 +8,28 @@ interface Props {
 const { project } = Astro.props
 ---
 
-{project.images && project.images.length > 0 && (
+{project.image && (
   <section class="bg-dark px-8 py-16 border-b border-white/[0.06]">
     <div class="max-w-4xl mx-auto">
 
-      <div class="flex items-center justify-between mb-8">
-        <p class="font-mono text-[10.5px] tracking-[0.12em] uppercase text-white/20">
-          — Snapshots
-        </p>
-        <p class="font-mono text-[10.5px] tracking-[0.12em] uppercase text-white/20">
-          <span id="gallery-current">1</span> / {project.images.length}
-        </p>
+      <div class="overflow-hidden border border-white/[0.06] reveal">
+        <img
+          src={project.image}
+          alt={project.title}
+          class="w-full block"
+        />
       </div>
 
-      <div class="relative overflow-hidden border border-white/[0.06] rounded-lg">
-        <div id="gallery-track" class="flex transition-transform duration-500 ease-in-out">
-          {project.images.map((src, i) => (
-            <div class="min-w-full">
-              <img
-                src={src}
-                alt={`${project.title} screenshot ${i + 1}`}
-                class="w-full object-cover object-top"
-              />
+      {project.images && project.images.length > 0 && (
+        <div class="grid grid-cols-2 gap-4 mt-4">
+          {project.images.map((src) => (
+            <div class="overflow-hidden border border-white/[0.06] reveal">
+              <img src={src} alt="" class="w-full block" />
             </div>
           ))}
         </div>
-      </div>
-
-      <div class="flex items-center justify-between mt-5">
-
-        <div class="flex gap-2">
-          {project.images.map((_, i) => (
-            <button
-              class="gallery-dot w-1.5 h-1.5 rounded-full bg-white/20 transition-colors duration-200"
-              data-index={i}
-              aria-label={`Go to slide ${i + 1}`}
-            />
-          ))}
-        </div>
-
-        <div class="flex gap-2">
-          <button
-            id="gallery-prev"
-            class="font-mono text-[11px] tracking-[0.06em] uppercase cursor-pointer text-white/30 border border-white/10 px-4 py-2 hover:text-white/70 hover:border-white/25 transition-colors duration-150"
-            aria-label="Previous"
-          >
-            ← Prev
-          </button>
-          <button
-            id="gallery-next"
-            class="font-mono text-[11px] tracking-[0.06em] uppercase cursor-pointer text-white/30 border border-white/10 px-4 py-2 hover:text-white/70 hover:border-white/25 transition-colors duration-150"
-            aria-label="Next"
-          >
-            Next →
-          </button>
-        </div>
-
-      </div>
+      )}
 
     </div>
   </section>
 )}
-
-<script>
-  const track = document.getElementById('gallery-track') as HTMLElement
-  const current = document.getElementById('gallery-current') as HTMLElement
-  const prev = document.getElementById('gallery-prev') as HTMLButtonElement
-  const next = document.getElementById('gallery-next') as HTMLButtonElement
-  const dots = document.querySelectorAll<HTMLButtonElement>('.gallery-dot')
-
-  if (track && dots.length > 0) {
-    let index = 0
-    const total = dots.length
-
-    function goTo(i: number) {
-      index = (i + total) % total
-      track.style.transform = `translateX(-${index * 100}%)`
-      current.textContent = String(index + 1)
-      dots.forEach((d, j) => {
-        d.classList.toggle('bg-accent', j === index)
-        d.classList.toggle('bg-white/20', j !== index)
-      })
-    }
-
-    prev.addEventListener('click', () => goTo(index - 1))
-    next.addEventListener('click', () => goTo(index + 1))
-    dots.forEach((d) => d.addEventListener('click', () => goTo(Number(d.dataset.index))))
-
-    goTo(0)
-  }
-</script>

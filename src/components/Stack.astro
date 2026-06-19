@@ -1,0 +1,35 @@
+---
+const categories = [
+  { label: 'Frontend',         items: ['Astro', 'Tailwind CSS', 'Alpine.js', 'JavaScript', 'HTML / CSS'] },
+  { label: 'Backend',          items: ['Laravel', 'PHP', 'Django', 'Python', 'REST APIs'] },
+  { label: 'Database',         items: ['MySQL', 'PostgreSQL'] },
+  { label: 'ML / AI',          items: ['SBERT', 'scikit-learn', 'DBSCAN', 'Random Forest', 'Cosine Similarity', 'NLP', 'LLMs'] },
+  { label: 'Tooling & Deploy', items: ['Git', 'GitHub', 'Render', 'Vercel', 'Google OAuth'] },
+]
+---
+
+<section id="stack" class="bg-cream px-6 sm:px-8 pb-20">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="flex items-baseline justify-between border-b border-cream-border pb-5 mb-8 reveal">
+      <h2 class="font-serif text-2xl text-ink">Stack</h2>
+      <span class="font-mono text-[11px] text-muted">what i work with</span>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+      {categories.map(cat => (
+        <div class="bg-white border border-cream-border rounded-2xl p-6 reveal">
+          <p class="font-mono text-[10px] text-black/80 uppercase tracking-[0.12em] mb-4">{cat.label}</p>
+          <div class="flex flex-wrap gap-1.5">
+            {cat.items.map(item => (
+              <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-muted border-cream-border">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

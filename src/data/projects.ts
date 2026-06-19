@@ -78,7 +78,13 @@ export const projects: Project[] = [
     ],
     stack: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS', 'Alpine.js', 'Google OAuth'],
     image: '/images/hero-image/dwellcasa.png',
-    images: null,
+    images: [
+      '/images/dwellcasa/1.png',
+      '/images/dwellcasa/2.png',
+      '/images/dwellcasa/3.png',
+      '/images/dwellcasa/4.png',
+      '/images/dwellcasa/5.png',
+    ],
   },
   {
     slug: 'motovault',
