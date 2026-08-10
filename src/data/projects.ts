@@ -1,7 +1,7 @@
 export type Project = {
   slug: string
   title: string
-  type: 'Client project' | 'Academic project'
+  type: 'Client project' | 'Academic project' | 'Independent project'
   year: string
   live: string | null
   github: string | null
@@ -18,7 +18,7 @@ export const projects: Project[] = [
   {
     slug: 'traffic-hotspot',
     title: 'Traffic Accident Hotspot Detection',
-    type: 'Academic project',
+    type: 'Independent project',
     year: '2026',
     live: 'https://traffic-hotspot.onrender.com',
     github: 'https://github.com/chris-bhaila/Traffic-Accident-Hotspot-Detection-System',
