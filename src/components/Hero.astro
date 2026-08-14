@@ -2,14 +2,15 @@
 import Icon from './Icon.astro'
 ---
 
-<section class="px-6 sm:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28">
+<section class="relative px-6 sm:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28 overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_55%_at_80%_0%,rgba(109,94,240,0.14),transparent)]"></div>
   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
 
     <!-- Text -->
     <div class="reveal">
-      <p class="text-muted text-sm font-medium mb-3">Hi, I'm</p>
+      <p class="font-mono text-muted text-sm font-medium mb-3">Hi, I'm</p>
 
-      <h1 class="font-sans font-extrabold text-[clamp(2.8rem,7vw,5.2rem)] leading-[0.95] tracking-[-0.03em] text-ink mb-4">
+      <h1 class="font-display font-bold text-[clamp(3.2rem,8vw,6rem)] leading-[0.92] tracking-[-0.03em] text-ink mb-4">
         Chris Bhaila
       </h1>
 
@@ -20,7 +21,7 @@ import Icon from './Icon.astro'
 
       <div class="w-10 h-px bg-border mb-8"></div>
 
-      <h2 class="font-sans font-semibold text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-ink max-w-xl mb-6">
+      <h2 class="font-display font-semibold text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-ink max-w-xl mb-6">
         Intelligent web products that <em class="text-accent font-semibold italic">think</em>, look good, and ship.
       </h2>
 
@@ -32,52 +33,130 @@ import Icon from './Icon.astro'
       <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
         <a
           href="#work"
-          class="inline-flex items-center gap-2 bg-ink text-white text-sm font-medium rounded-full px-6 py-3 hover:bg-ink/85 transition-colors duration-200"
+          class="group inline-flex items-center gap-2 bg-ink text-bg text-sm font-medium rounded-full px-6 py-3 transition-all duration-200 hover:bg-accent hover:scale-105 active:scale-95"
         >
           View My Work
-          <Icon name="arrow-up-right" class="w-4 h-4" />
+          <Icon name="arrow-up-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
         <a
           href="/files/Chris_Bhaila_Resume.pdf"
           target="_blank"
-          class="inline-flex items-center gap-2 text-ink text-sm font-medium border border-border rounded-full px-6 py-3 hover:border-ink/30 transition-colors duration-200"
+          class="group inline-flex items-center gap-2 text-ink text-sm font-medium border border-border rounded-full px-6 py-3 transition-all duration-200 hover:border-accent hover:text-accent hover:scale-105 active:scale-95"
         >
           Download Resume
-          <Icon name="download" class="w-4 h-4" />
+          <Icon name="download" class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5" />
         </a>
       </div>
     </div>
 
-    <!-- Decorative graphic -->
-    <div class="reveal relative h-[320px] sm:h-[420px] hidden lg:block">
-      <div class="absolute inset-0 dot-grid opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"></div>
+    <!-- Decorative graphic: a node graph — three clusters + one query point reaching -->
+    <!-- into each, echoing the DBSCAN clustering and SBERT similarity search in my ML work -->
+    <div class="reveal relative h-[420px] sm:h-[540px] hidden lg:block">
+      <div class="absolute inset-0 dot-grid opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"></div>
 
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="relative w-64 h-64 sm:w-80 sm:h-80">
-          <div class="absolute inset-0 rounded-full bg-accent/20 blur-3xl"></div>
-          <div class="absolute inset-6 rounded-full border border-accent/25"></div>
-          <div class="absolute inset-14 rounded-full border border-accent/20"></div>
-          <div class="absolute inset-24 rounded-full border border-accent/30"></div>
-          <div class="absolute inset-0 flex items-center justify-center">
-            <div class="w-16 h-16 rounded-2xl bg-ink flex items-center justify-center text-white font-extrabold text-xl rotate-6">
-              CB
-            </div>
-          </div>
-        </div>
+      <div class="absolute inset-0 flex items-center justify-center float">
+        <svg viewBox="0 0 400 400" class="w-full h-full max-w-[560px] max-h-[560px]" fill="none">
+          <!-- cluster A -->
+          <g class="graph-edge" stroke="var(--color-border)" stroke-width="1.5">
+            <line x1="80" y1="100" x2="115" y2="80" />
+            <line x1="80" y1="100" x2="60" y2="130" />
+            <line x1="60" y1="130" x2="95" y2="150" />
+            <line x1="125" y1="140" x2="95" y2="150" />
+            <line x1="115" y1="80" x2="125" y2="140" />
+          </g>
+          <!-- cluster B -->
+          <g class="graph-edge" stroke="var(--color-border)" stroke-width="1.5">
+            <line x1="290" y1="250" x2="320" y2="225" />
+            <line x1="290" y1="250" x2="265" y2="290" />
+            <line x1="265" y1="290" x2="295" y2="315" />
+            <line x1="325" y1="285" x2="295" y2="315" />
+            <line x1="320" y1="225" x2="325" y2="285" />
+          </g>
+          <!-- cluster C -->
+          <g class="graph-edge" stroke="var(--color-border)" stroke-width="1.5">
+            <line x1="300" y1="85" x2="330" y2="115" />
+            <line x1="300" y1="85" x2="270" y2="65" />
+          </g>
+
+          <!-- query node reaching into each cluster -->
+          <g class="query-edge" stroke="var(--color-accent)" stroke-width="1.5" stroke-linecap="round">
+            <line x1="195" y1="205" x2="125" y2="140" style="animation-delay: 0s" />
+            <line x1="195" y1="205" x2="290" y2="250" style="animation-delay: .5s" />
+            <line x1="195" y1="205" x2="300" y2="85" style="animation-delay: 1s" />
+          </g>
+
+          <!-- cluster A nodes -->
+          <circle class="node-dot" style="--dx:2px; --dy:-3px; --dur:5.2s; --delay:.1s" cx="80" cy="100" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:-2px; --dy:2px; --dur:4.6s; --delay:.6s" cx="115" cy="80" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:3px; --dy:2px; --dur:5.8s; --delay:0s" cx="60" cy="130" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:-3px; --dy:-2px; --dur:5s; --delay:.3s" cx="125" cy="140" r="4" fill="var(--color-surface)" stroke="var(--color-ink)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:2px; --dy:3px; --dur:4.8s; --delay:.8s" cx="95" cy="150" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+
+          <!-- cluster B nodes -->
+          <circle class="node-dot" style="--dx:-2px; --dy:3px; --dur:5.4s; --delay:.2s" cx="290" cy="250" r="4" fill="var(--color-surface)" stroke="var(--color-ink)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:3px; --dy:-2px; --dur:5s; --delay:.7s" cx="320" cy="225" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:-3px; --dy:-3px; --dur:6s; --delay:.4s" cx="265" cy="290" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:2px; --dy:2px; --dur:4.4s; --delay:0s" cx="325" cy="285" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:-2px; --dy:2px; --dur:5.6s; --delay:.5s" cx="295" cy="315" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+
+          <!-- cluster C nodes -->
+          <circle class="node-dot" style="--dx:2px; --dy:-2px; --dur:5.1s; --delay:.9s" cx="300" cy="85" r="4" fill="var(--color-surface)" stroke="var(--color-ink)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:-2px; --dy:3px; --dur:4.9s; --delay:.15s" cx="330" cy="115" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+          <circle class="node-dot" style="--dx:3px; --dy:2px; --dur:5.7s; --delay:.65s" cx="270" cy="65" r="3.5" fill="var(--color-surface)" stroke="var(--color-muted-2)" stroke-width="1.5" />
+
+          <!-- query node -->
+          <circle class="query-ping" cx="195" cy="205" r="6" fill="var(--color-accent)" opacity="0.5" />
+          <circle cx="195" cy="205" r="6" fill="var(--color-accent)" />
+        </svg>
       </div>
-
-      <span class="absolute top-6 right-6 text-border">
-        <Icon name="plus" class="w-4 h-4" />
-      </span>
-      <span class="absolute bottom-10 left-4 text-border">
-        <Icon name="plus" class="w-4 h-4" />
-      </span>
 
       <div class="absolute bottom-4 left-2 flex items-center gap-2">
         <span class="w-6 h-px bg-border"></span>
-        <p class="text-muted-2 text-xs">AI meets craftsmanship.</p>
+        <p class="font-mono text-muted-2 text-xs">finding structure in the noise.</p>
       </div>
     </div>
 
   </div>
 </section>
+
+<style>
+  .node-dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: node-drift var(--dur, 5s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+  }
+
+  @keyframes node-drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(var(--dx, 2px), var(--dy, -2px)); }
+  }
+
+  .query-edge line {
+    stroke-dasharray: 4 6;
+    animation: signal-flow 2.6s linear infinite;
+  }
+
+  @keyframes signal-flow {
+    to { stroke-dashoffset: -20; }
+  }
+
+  .query-ping {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ping-scale 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes ping-scale {
+    0% { transform: scale(1); opacity: 0.5; }
+    75%, 100% { transform: scale(2.4); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .node-dot,
+    .query-edge line,
+    .query-ping {
+      animation: none;
+    }
+  }
+</style>

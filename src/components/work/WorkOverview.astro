@@ -9,10 +9,10 @@ const { project } = Astro.props
 ---
 
 <section class="px-6 sm:px-8 py-12 border-t border-border">
-  <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-10">
+  <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-10 reveal">
 
     <div>
-      <p class="text-muted-2 text-xs font-medium uppercase tracking-wide">
+      <p class="font-mono text-muted-2 text-xs font-medium uppercase tracking-wide">
         Overview
       </p>
     </div>
@@ -20,7 +20,16 @@ const { project } = Astro.props
     <div class="flex flex-col gap-10">
 
       <div>
-        <p class="text-accent text-xs font-semibold uppercase tracking-wide mb-3">
+        <p class="font-mono text-accent text-xs font-semibold uppercase tracking-wide mb-3">
+          The problem
+        </p>
+        <p class="text-[15px] text-muted leading-relaxed">
+          {project.problem}
+        </p>
+      </div>
+
+      <div>
+        <p class="font-mono text-accent text-xs font-semibold uppercase tracking-wide mb-3">
           What it is
         </p>
         <p class="text-[15px] text-muted leading-relaxed">
@@ -29,8 +38,11 @@ const { project } = Astro.props
       </div>
 
       <div>
-        <p class="text-accent text-xs font-semibold uppercase tracking-wide mb-3">
-          How I built it
+        <p class="font-mono text-accent text-xs font-semibold uppercase tracking-wide mb-3">
+          My role & approach
+        </p>
+        <p class="text-[15px] text-muted leading-relaxed mb-3">
+          {project.role}
         </p>
         <p class="text-[15px] text-muted leading-relaxed">
           {project.approach}

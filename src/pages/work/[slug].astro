@@ -6,7 +6,9 @@ import Nav from '../../components/Nav.astro'
 import WorkHero from '../../components/work/WorkHero.astro'
 import WorkGallery from '../../components/work/WorkGallery.astro'
 import WorkOverview from '../../components/work/WorkOverview.astro'
+import WorkCallout from '../../components/work/WorkCallout.astro'
 import WorkStack from '../../components/work/WorkStack.astro'
+import WorkDetailGallery from '../../components/work/WorkDetailGallery.astro'
 import WorkImpact from '../../components/work/WorkImpact.astro'
 
 export async function getStaticPaths() {
@@ -24,6 +26,8 @@ const { project } = Astro.props as { project: Project }
   <WorkHero project={project} />
   <WorkGallery project={project} />
   <WorkOverview project={project} />
+  <WorkCallout project={project} />
   <WorkStack project={project} />
+  <WorkDetailGallery project={project} />
   <WorkImpact project={project} />
 </Layout>

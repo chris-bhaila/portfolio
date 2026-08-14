@@ -10,11 +10,11 @@ const { project } = Astro.props;
 ---
 
 <section class="px-6 sm:px-8 pt-16 pb-12">
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl mx-auto reveal">
         <div class="flex items-center gap-3 mb-8">
             <a
                 href="/#work"
-                class="text-sm text-muted hover:text-ink transition-colors duration-150"
+                class="text-sm text-muted hover:text-ink hover:-translate-x-0.5 transition-all duration-150 inline-block"
             >
                 ← Work
             </a>
@@ -24,7 +24,7 @@ const { project } = Astro.props;
             </span>
         </div>
 
-        <div class="flex items-center gap-3 mb-5">
+        <div class="flex items-center gap-3 mb-5 font-mono">
             <span class="text-sm font-medium text-accent">
                 {project.type}
             </span>
@@ -34,7 +34,7 @@ const { project } = Astro.props;
             </span>
         </div>
 
-        <h1 class="font-sans font-extrabold text-[clamp(2.2rem,6vw,3.5rem)] leading-none tracking-[-0.025em] text-ink mb-6">
+        <h1 class="font-display font-bold text-[clamp(2.4rem,6.5vw,4rem)] leading-none tracking-[-0.025em] text-ink mb-6">
             {project.title}
         </h1>
 
@@ -49,14 +49,14 @@ const { project } = Astro.props;
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 bg-ink text-white text-sm font-medium rounded-full px-6 py-2.5 hover:bg-ink/85 transition-colors duration-150"
+                        class="group inline-flex items-center gap-2 bg-ink text-bg text-sm font-medium rounded-full px-6 py-2.5 transition-all duration-200 hover:bg-accent hover:scale-105 active:scale-95"
                     >
                         <span class="relative flex h-1.5 w-1.5">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-good opacity-75" />
                             <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-good" />
                         </span>
                         Live site
-                        <Icon name="arrow-up-right" class="w-3.5 h-3.5" />
+                        <Icon name="arrow-up-right" class="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </a>
                 )
             }
@@ -67,7 +67,7 @@ const { project } = Astro.props;
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-2 text-ink text-sm font-medium border border-border rounded-full px-6 py-2.5 hover:border-ink/30 transition-colors duration-150"
+                        class="inline-flex items-center gap-2 text-ink text-sm font-medium border border-border rounded-full px-6 py-2.5 transition-all duration-200 hover:border-accent hover:text-accent hover:scale-105 active:scale-95"
                     >
                         <Icon name="github" class="w-3.5 h-3.5" />
                         GitHub

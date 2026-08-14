@@ -9,16 +9,17 @@ const links = [
 ]
 ---
 
-<section id="contact" class="px-6 sm:px-8 py-20">
+<section id="contact" class="relative px-6 sm:px-8 py-20 overflow-hidden">
+  <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_70%_55%_at_20%_100%,rgba(109,94,240,0.12),transparent)]"></div>
   <div class="max-w-6xl mx-auto">
 
     <div class="flex items-center gap-2 mb-4 reveal">
       <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-      <p class="text-muted-2 text-xs font-medium uppercase tracking-wide">Get In Touch</p>
+      <p class="font-mono text-accent text-xs font-semibold uppercase tracking-wide">Get In Touch</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-start mb-10 reveal">
-      <h2 class="font-sans font-bold text-[clamp(1.8rem,4vw,2.75rem)] leading-[1.1] tracking-[-0.02em] text-ink max-w-xl">
+      <h2 class="font-display font-bold text-[clamp(1.8rem,4vw,2.75rem)] leading-[1.1] tracking-[-0.02em] text-ink max-w-xl">
         Let's build something intelligent together.
       </h2>
       <div class="flex flex-col gap-4 md:items-end">
@@ -28,10 +29,10 @@ const links = [
         </p>
         <a
           href="mailto:chrisbhaila5@gmail.com"
-          class="inline-flex items-center gap-2 bg-ink text-white text-sm font-medium rounded-full px-6 py-3 hover:bg-ink/85 transition-colors duration-200"
+          class="group inline-flex items-center gap-2 bg-ink text-bg text-sm font-medium rounded-full px-6 py-3 transition-all duration-200 hover:bg-accent hover:scale-105 active:scale-95"
         >
           Let's Connect
-          <Icon name="arrow-up-right" class="w-4 h-4" />
+          <Icon name="arrow-up-right" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
       </div>
     </div>
@@ -43,7 +44,7 @@ const links = [
             href={item.href}
             target={item.href.startsWith('http') ? '_blank' : undefined}
             rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            class="flex items-center gap-3 bg-surface border border-border rounded-xl px-5 py-3.5 text-ink hover:border-ink/25 transition-colors duration-200 group"
+            class="flex items-center gap-3 bg-surface border border-border rounded-xl px-5 py-3.5 text-ink hover:border-ink/25 hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_8px_20px_rgba(139,127,255,0.1)] active:scale-[0.98] active:translate-y-0 transition-all duration-200 group"
           >
             <Icon name={item.icon} class="w-4 h-4 text-muted shrink-0" />
             <span class="text-sm flex-1 truncate">{item.label}</span>

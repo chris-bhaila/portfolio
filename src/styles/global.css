@@ -1,10 +1,13 @@
 @import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 @source "./src/components/**/*.astro";
 @source "./src/pages/**/*.astro";
 @source "./src/layouts/**/*.astro";
 
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --color-bg: #FAFAF7;
   --color-surface: #FFFFFF;
@@ -18,6 +21,31 @@
   --color-good: #1D9E75;
 }
 
+/*
+ * Dark mode: overriding the theme tokens here (rather than using Tailwind's
+ * `dark:` utility variant) means every component using semantic classes like
+ * `bg-bg` / `text-ink` / `border-border` flips automatically — no per-component
+ * `dark:` classes needed anywhere else in the codebase.
+ *
+ * `--color-dark` is deliberately NOT overridden: the Tech Stack section is
+ * pinned to it and is meant to stay a fixed near-black landmark in both modes.
+ * Dark mode's own page background is kept a visibly lighter gray than
+ * `--color-dark` specifically so that section still reads as a distinct band
+ * instead of blending into the rest of a dark page.
+ */
+:root.dark {
+  --color-bg: #18181B;
+  --color-surface: #202024;
+  --color-border: #302F35;
+  --color-ink: #F2F1EE;
+  --color-muted: #A8A8AF;
+  --color-muted-2: #75757D;
+  --color-accent: #8B7FFF;
+  --color-accent-light: #B0A6FF;
+  --color-good: #34D399;
+  color-scheme: dark;
+}
+
 @layer base {
   * {
     margin: 0;
@@ -27,6 +55,7 @@
 
   html {
     scroll-behavior: smooth;
+    color-scheme: light;
   }
 
   ul,
@@ -36,6 +65,20 @@
 
   a {
     text-decoration: none;
+  }
+
+  body,
+  header,
+  section,
+  footer {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
 }
 
@@ -48,7 +91,8 @@
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal.visible {
@@ -56,10 +100,42 @@
   transform: translateY(0);
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+#mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+#mobile-menu.menu-open {
+  max-height: 400px;
+  opacity: 1;
+}
+
+/* View Transitions: smooth crossfade between pages */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.35s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .float {
+    animation: none;
   }
 }

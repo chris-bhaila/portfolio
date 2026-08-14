@@ -1,0 +1,121 @@
+---
+import { createHash } from 'node:crypto'
+import { readFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import type { Project } from '../../data/projects'
+
+interface Props {
+  project: Project
+}
+
+const { project } = Astro.props
+
+function hashPublicFile(src: string) {
+  const path = fileURLToPath(new URL(`../../../public${src}`, import.meta.url))
+  return createHash('sha1').update(readFileSync(path)).digest('hex')
+}
+
+const heroHash = project.image ? hashPublicFile(project.image) : null
+const seenHashes = new Set<string>(heroHash ? [heroHash] : [])
+const detailImages = (project.images ?? []).filter((src) => {
+  const hash = hashPublicFile(src)
+  if (seenHashes.has(hash)) return false
+  seenHashes.add(hash)
+  return true
+})
+---
+
+{detailImages.length > 0 && (
+  <section class="px-6 sm:px-8 py-16 border-t border-border">
+    <div class="max-w-4xl mx-auto">
+      <p class="font-mono text-muted-2 text-xs font-medium uppercase tracking-wide mb-6 reveal">
+        A closer look
+      </p>
+
+      <div class="relative reveal work-carousel">
+        <div class="overflow-hidden rounded-2xl border border-border">
+          <div class="flex transition-transform duration-300 ease-out work-carousel-track">
+            {detailImages.map((src) => (
+              <div class="w-full flex-shrink-0">
+                <img src={src} alt={`${project.title} — additional interface detail`} class="w-full block" />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {detailImages.length > 1 && (
+          <>
+            <button
+              type="button"
+              aria-label="Previous image"
+              class="work-carousel-prev absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 rounded-full bg-surface/90 border border-border text-muted hover:text-ink hover:border-ink/30 hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Next image"
+              class="work-carousel-next absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 rounded-full bg-surface/90 border border-border text-muted hover:text-ink hover:border-ink/30 hover:scale-110 active:scale-95 transition-all duration-200 cursor-pointer"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+            </button>
+
+            <div class="flex items-center justify-center gap-2 mt-4 work-carousel-dots">
+              {detailImages.map((_, i) => (
+                <button
+                  type="button"
+                  aria-label={`Go to image ${i + 1}`}
+                  data-index={i}
+                  class="work-carousel-dot w-1.5 h-1.5 rounded-full bg-border hover:bg-muted-2 transition-all duration-200 hover:scale-125"
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  function initCarousels() {
+    document.querySelectorAll<HTMLElement>(".work-carousel").forEach((carousel) => {
+      const track = carousel.querySelector<HTMLElement>(".work-carousel-track");
+      const slides = track?.children.length ?? 0;
+      const prevBtn = carousel.querySelector<HTMLButtonElement>(".work-carousel-prev");
+      const nextBtn = carousel.querySelector<HTMLButtonElement>(".work-carousel-next");
+      const dots = carousel.querySelectorAll<HTMLButtonElement>(".work-carousel-dot");
+      if (!track || slides === 0) return;
+
+      let index = 0;
+
+      const update = () => {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, i) =>
+          dot.classList.toggle("bg-ink", i === index)
+        );
+      };
+
+      prevBtn?.addEventListener("click", () => {
+        index = (index - 1 + slides) % slides;
+        update();
+      });
+
+      nextBtn?.addEventListener("click", () => {
+        index = (index + 1) % slides;
+        update();
+      });
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          index = Number(dot.dataset.index);
+          update();
+        });
+      });
+
+      update();
+    });
+  }
+
+  document.addEventListener("astro:page-load", initCarousels);
+</script>

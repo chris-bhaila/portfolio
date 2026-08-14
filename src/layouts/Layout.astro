@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import { ClientRouter } from 'astro:transitions'
 
 interface Props {
   title?: string
@@ -21,25 +22,75 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500;1,600&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <ClientRouter />
+    <script is:inline>
+      // Blocking + inline so this runs before first paint, avoiding a flash of
+      // the wrong theme. Explicit choice (localStorage) wins; otherwise falls
+      // back to the OS-level preference.
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const isDark = stored ? stored === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.classList.toggle("dark", isDark);
+      })();
+    </script>
   </head>
   <body class="bg-bg text-ink font-sans antialiased">
     <slot />
     <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("visible");
-              observer.unobserve(entry.target);
-            }
-          });
+      function initReveal() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+
+        document.querySelectorAll(".reveal:not(.visible)").forEach((el) => observer.observe(el));
+      }
+
+      document.addEventListener("astro:page-load", initReveal);
+
+      // Chromium/WebKit can leave :hover "stuck" on whatever element sat under the
+      // cursor when a View Transition swaps the DOM, until the pointer physically
+      // moves. Force a recompute right after each swap by replaying the last known
+      // pointer position as a synthetic move.
+      let lastPointerX = -1;
+      let lastPointerY = -1;
+
+      document.addEventListener(
+        "pointermove",
+        (e) => {
+          lastPointerX = e.clientX;
+          lastPointerY = e.clientY;
         },
-        { threshold: 0.15 },
+        { passive: true },
       );
 
-      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+      document.addEventListener("astro:after-swap", () => {
+        // Toggling pointer-events off/on forcibly clears any stuck :hover chain
+        // (spec-guaranteed, unlike relying on a synthetic event alone), then a
+        // replayed mousemove lets the browser reapply hover at the correct
+        // element if the cursor is actually still over it.
+        document.body.style.pointerEvents = "none";
+        requestAnimationFrame(() => {
+          document.body.style.pointerEvents = "";
+          if (lastPointerX === -1) return;
+          document.elementFromPoint(lastPointerX, lastPointerY)?.dispatchEvent(
+            new MouseEvent("mousemove", {
+              clientX: lastPointerX,
+              clientY: lastPointerY,
+              bubbles: true,
+            }),
+          );
+        });
+      });
     </script>
   </body>
 </html>
