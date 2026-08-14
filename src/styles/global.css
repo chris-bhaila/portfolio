@@ -4,17 +4,18 @@
 @source "./src/layouts/**/*.astro";
 
 @theme {
-  --font-serif: 'DM Serif Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
 
-  --color-dark: #0D0D0D;
-  --color-cream: #F5F3EE;
-  --color-cream-border: #DDDBD5;
-  --color-ink: #1A1A1A;
-  --color-muted: #888888;
-  --color-accent: #7C6AF7;
-  --color-accent-light: #A89BF8;
+  --color-bg: #FAFAF7;
+  --color-surface: #FFFFFF;
+  --color-border: #E8E6DF;
+  --color-ink: #0B0B0C;
+  --color-muted: #6E6E76;
+  --color-muted-2: #9C9CA3;
+  --color-accent: #6D5EF0;
+  --color-accent-light: #9186F5;
+  --color-dark: #0E0E11;
+  --color-good: #1D9E75;
 }
 
 @layer base {
@@ -38,31 +39,10 @@
   }
 }
 
-.marquee-track {
-  display: flex;
-  gap: 0;
-  animation: marquee 28s linear infinite;
-  width: max-content;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
+.dot-grid {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--color-border);
 }
 
 .reveal {

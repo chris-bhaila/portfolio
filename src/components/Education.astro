@@ -1,39 +1,40 @@
 ---
 ---
 
-<section class="bg-cream px-6 sm:px-8 pb-20">
+<section class="px-6 sm:px-8 pb-20">
   <div class="max-w-6xl mx-auto">
 
-    <div class="flex items-baseline justify-between border-b border-cream-border pb-5 mb-8 reveal">
-      <h2 class="font-serif text-2xl text-ink">Education</h2>
+    <div class="flex items-center gap-2 mb-8 reveal">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+      <p class="text-muted-2 text-xs font-medium uppercase tracking-wide">Education</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-      <div class="bg-white border border-cream-border rounded-2xl p-6 reveal">
-        <p class="font-mono text-[10px] text-black/80 uppercase tracking-wide mb-3">2021 — Present</p>
-        <h3 class="font-serif text-xl text-ink">Bachelor's in Computer Application</h3>
-        <p class="font-serif text-black/40 text-sm mb-1 italic">Affiliated to Tribhuwan University</p>
+      <div class="bg-surface border border-border rounded-2xl p-6 reveal">
+        <p class="text-muted-2 text-xs font-medium uppercase tracking-wide mb-3">2021 — Present</p>
+        <h3 class="font-sans font-semibold text-lg text-ink mb-1">Bachelor's in Computer Application</h3>
+        <p class="text-muted text-sm mb-1 italic">Affiliated to Tribhuwan University</p>
         <p class="text-muted text-sm mb-4">Thames International College, Old Baneshwor, Kathmandu</p>
         <div class="flex flex-wrap gap-1.5">
           {['Data Structures & Algorithms', 'Artificial Intelligence', 'Probability & Statistics', 'Web Technology', 'OOP', 'Numerical Methods', 'Operations Research',
             'DBMS'
           ].map(course => (
-            <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-muted border-cream-border">
+            <span class="text-[11px] px-2.5 py-1 rounded-full border text-muted border-border">
               {course}
             </span>
           ))}
         </div>
       </div>
 
-      <div class="bg-white border border-cream-border rounded-2xl p-6 reveal">
-        <p class="font-mono text-[10px] text-black/80 uppercase tracking-wide mb-3">2019 — 2021</p>
-        <h3 class="font-serif text-xl text-ink mb-1">+2 Management with Computer Science</h3>
+      <div class="bg-surface border border-border rounded-2xl p-6 reveal">
+        <p class="text-muted-2 text-xs font-medium uppercase tracking-wide mb-3">2019 — 2021</p>
+        <h3 class="font-sans font-semibold text-lg text-ink mb-1">+2 Management with Computer Science</h3>
         <p class="text-muted text-sm mb-4">Little Angels' College of Management, Hattiban, Lalitpur</p>
         <div class="flex flex-wrap gap-1.5">
-          <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-muted border-cream-border">GPA 3.38</span>
-          <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-muted border-cream-border">C Programming</span>
-          <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-muted border-cream-border">Calculus</span>
+          <span class="text-[11px] px-2.5 py-1 rounded-full border text-muted border-border">GPA 3.38</span>
+          <span class="text-[11px] px-2.5 py-1 rounded-full border text-muted border-border">C Programming</span>
+          <span class="text-[11px] px-2.5 py-1 rounded-full border text-muted border-border">Calculus</span>
         </div>
       </div>
 

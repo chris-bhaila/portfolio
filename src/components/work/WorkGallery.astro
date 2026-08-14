@@ -28,12 +28,12 @@ const galleryImages = allSrcs.filter((src) => {
 ---
 
 {project.image && (
-  <section class="bg-dark px-8 py-16 border-b border-white/[0.06]">
+  <section class="px-6 sm:px-8 py-12 border-t border-border">
     <div class="max-w-4xl mx-auto">
 
       {galleryImages.length > 0 && (
-        <div class="relative mt-4 reveal work-carousel">
-          <div class="overflow-hidden border border-white/[0.06]">
+        <div class="relative reveal work-carousel">
+          <div class="overflow-hidden rounded-2xl border border-border">
             <div class="flex transition-transform duration-300 ease-out work-carousel-track">
               {galleryImages.map((src) => (
                 <div class="w-full flex-shrink-0">
@@ -48,14 +48,14 @@ const galleryImages = allSrcs.filter((src) => {
               <button
                 type="button"
                 aria-label="Previous image"
-                class="work-carousel-prev absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 bg-dark/70 border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-colors duration-150 cursor-pointer"
+                class="work-carousel-prev absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 rounded-full bg-surface/90 border border-border text-muted hover:text-ink hover:border-ink/30 transition-colors duration-150 cursor-pointer"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
               </button>
               <button
                 type="button"
                 aria-label="Next image"
-                class="work-carousel-next absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 bg-dark/70 border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-colors duration-150 cursor-pointer"
+                class="work-carousel-next absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center w-9 h-9 rounded-full bg-surface/90 border border-border text-muted hover:text-ink hover:border-ink/30 transition-colors duration-150 cursor-pointer"
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg>
               </button>
@@ -66,7 +66,7 @@ const galleryImages = allSrcs.filter((src) => {
                     type="button"
                     aria-label={`Go to image ${i + 1}`}
                     data-index={i}
-                    class="work-carousel-dot w-1.5 h-1.5 rounded-full bg-white/15 hover:bg-white/40 transition-colors duration-150"
+                    class="work-carousel-dot w-1.5 h-1.5 rounded-full bg-border hover:bg-muted-2 transition-colors duration-150"
                   />
                 ))}
               </div>
@@ -94,7 +94,7 @@ const galleryImages = allSrcs.filter((src) => {
       const update = () => {
         track.style.transform = `translateX(-${index * 100}%)`;
         dots.forEach((dot, i) =>
-          dot.classList.toggle("bg-white/60", i === index)
+          dot.classList.toggle("bg-ink", i === index)
         );
       };
 

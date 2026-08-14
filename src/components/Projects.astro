@@ -1,109 +1,90 @@
 ---
 import { projects } from "../data/projects";
+import Icon from './Icon.astro'
 
-const tagStyles: Record<string, string> = {
-  Python: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
-  PyTorch: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
-  "scikit-learn": "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
-  SBERT: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
-  Django: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
-  "all-MiniLM-L6-v2": "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
-  Postgres: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
-  PostgreSQL: "text-[#3B82F6] border-[#3B82F6]/30 bg-[#3B82F6]/[0.06]",
-  DBSCAN: "text-accent border-accent/30 bg-accent/[0.06]",
-  "Random Forest": "text-accent border-accent/30 bg-accent/[0.06]",
-  "Cosine-Similarity": "text-accent border-accent/30 bg-accent/[0.06]",
-  "Cosine Similarity": "text-accent border-accent/30 bg-accent/[0.06]",
-  "Decision Tree": "text-accent border-accent/30 bg-accent/[0.06]",
-  Laravel: "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
-  "Repository Design Pattern":
-    "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
-  "Token-based Enrollment":
-    "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
-  "Role-Based Access Control":
-    "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
-  "Multi-Location Support":
-    "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
-  Inventory: "text-[#1D9E75] border-[#1D9E75]/30 bg-[#1D9E75]/[0.06]",
-  "Google SSO": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
-  "Google OAuth": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
-  "Open-Meteo": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
-  "Leaflet.js": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
-  OpenStreetMap: "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
-  "Chart.js": "text-[#D97706] border-[#D97706]/30 bg-[#D97706]/[0.06]",
-};
+const mlStack = new Set(['SBERT', 'DBSCAN', 'Random Forest', 'scikit-learn', 'Cosine Similarity', 'all-MiniLM-L6-v2']);
+const mlProjects = projects.filter((p) => p.stack.some((s) => mlStack.has(s)));
+const fullstackProjects = projects.filter((p) => !mlProjects.includes(p));
+
+const groups = [
+  {
+    id: 'work',
+    eyebrow: 'Featured Work',
+    heading: 'AI/ML Projects',
+    linkLabel: 'Explore all projects',
+    linkHref: 'https://github.com/chris-bhaila',
+    items: mlProjects,
+  },
+  {
+    eyebrow: null,
+    heading: 'Fullstack Projects',
+    linkLabel: 'View more on GitHub',
+    linkHref: 'https://github.com/chris-bhaila',
+    items: fullstackProjects,
+  },
+];
 ---
 
-<section id="work" class="bg-cream px-6 sm:px-8 pb-24">
+<div class="px-6 sm:px-8 pb-8">
   <div class="max-w-6xl mx-auto">
-    <div
-      class="flex items-baseline justify-between border-b border-cream-border pb-5 mb-8 reveal"
-    >
-      <h2 class="font-serif text-2xl text-ink">Selected work</h2>
-      <span class="font-mono text-[11px] text-muted"
-        >0{projects.length} projects</span
-      >
-    </div>
+    {groups.map((group, gi) => (
+      <section id={group.id} class={gi === 0 ? 'mb-16' : 'mb-4'}>
+        {group.eyebrow && (
+          <div class="flex items-center gap-2 mb-2 reveal">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+            <p class="text-muted-2 text-xs font-medium uppercase tracking-wide">{group.eyebrow}</p>
+          </div>
+        )}
+        <div class="flex items-baseline justify-between mb-8 reveal">
+          <h2 class="font-sans font-bold text-2xl sm:text-3xl tracking-[-0.02em] text-ink">{group.heading}</h2>
+          <a href={group.linkHref} target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 text-sm text-muted hover:text-ink transition-colors duration-200">
+            {group.linkLabel}
+            <Icon name="arrow-up-right" class="w-3.5 h-3.5" />
+          </a>
+        </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {
-        projects.map((project) => (
-          <a
-            href={`/work/${project.slug}`}
-            class="bg-white border border-cream-border rounded-2xl overflow-hidden flex flex-col reveal group cursor-pointer"
-          >
-            <div class="overflow-hidden bg-cream-border h-48">
-              {project.image && (
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
-                />
-              )}
-            </div>
-
-            <div class="p-6 flex flex-col flex-1">
-              <div class="flex flex-wrap gap-1.5 mb-3">
-                {project.stack.slice(0, 4).map((tag) => (
-                  <span
-                    class={`font-mono text-[10px] px-2.5 py-1 rounded-full border ${tagStyles[tag] ?? "text-muted border-cream-border"}`}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <h3 class="font-serif text-xl text-ink mb-2">{project.title}</h3>
-              <p class="text-muted text-sm leading-relaxed mb-5 flex-1">
-                {project.tagline}
-              </p>
-
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  {project.live && (
-                    <span class="flex items-center gap-1.5 bg-[#1D9E75]/10 border border-[#1D9E75]/30 rounded-full px-2.5 py-1">
-                      <span class="relative flex h-1.5 w-1.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#1D9E75] opacity-75" />
-                        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#1D9E75]" />
-                      </span>
-                      <span class="font-mono text-[10px] text-[#1D9E75]">
-                        live
-                      </span>
-                    </span>
-                  )}
-                  <span class="font-mono text-[10px] text-muted/60 uppercase tracking-wide">
-                    {project.type} · {project.year}
-                  </span>
-                </div>
-
-                <span class="w-7 h-7 rounded-full border border-cream-border flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-white transition-colors duration-200">
-                  →
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {group.items.map((project) => (
+            <a
+              href={`/work/${project.slug}`}
+              class="bg-surface border border-border rounded-2xl overflow-hidden flex flex-col reveal group cursor-pointer hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition-shadow duration-300"
+            >
+              <div class="relative overflow-hidden bg-dark h-48">
+                {project.image && (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
+                  />
+                )}
+                <span class="absolute bottom-3 left-3 bg-dark/80 backdrop-blur-sm text-white/80 text-[11px] px-2.5 py-1 rounded-full">
+                  {project.stack.slice(0, 3).join(' • ')}
                 </span>
               </div>
-            </div>
-          </a>
-        ))
-      }
-    </div>
+
+              <div class="p-6 flex flex-col flex-1">
+                <div class="flex items-center justify-between mb-2">
+                  <h3 class="font-sans font-semibold text-lg text-ink">{project.title}</h3>
+                  <Icon name="arrow-up-right" class="w-4 h-4 text-muted-2 group-hover:text-ink transition-colors duration-200 shrink-0" />
+                </div>
+                <p class="text-muted text-sm leading-relaxed flex-1">
+                  {project.tagline}
+                </p>
+
+                {project.live && (
+                  <div class="flex items-center gap-1.5 mt-4">
+                    <span class="relative flex h-1.5 w-1.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-good opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-good"></span>
+                    </span>
+                    <span class="text-[11px] text-good font-medium">live</span>
+                  </div>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
   </div>
-</section>
+</div>

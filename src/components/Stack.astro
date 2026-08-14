@@ -1,32 +1,33 @@
 ---
-const categories = [
-  { label: 'Frontend',         items: ['Astro', 'Tailwind CSS', 'Alpine.js', 'JavaScript', 'HTML / CSS'] },
-  { label: 'Backend',          items: ['Laravel', 'PHP', 'Django', 'Python', 'REST APIs'] },
-  { label: 'Database',         items: ['MySQL', 'PostgreSQL'] },
-  { label: 'ML / AI',          items: ['SBERT', 'scikit-learn', 'DBSCAN', 'Random Forest', 'Cosine Similarity', 'NLP', 'LLMs'] },
-  { label: 'Tooling & Deploy', items: ['Git', 'GitHub', 'Render', 'Vercel', 'Google OAuth'] },
+import Icon from './Icon.astro'
+
+const techs = [
+  { icon: 'python', name: 'Python', desc: 'Core language for backend, automation, and AI/ML solutions.', bg: 'bg-[#3776AB]/10', fg: 'text-[#3776AB]' },
+  { icon: 'django', name: 'Django', desc: 'High-level Python web framework for scalable applications.', bg: 'bg-[#0C4B33]/10', fg: 'text-[#0C4B33]' },
+  { icon: 'laravel', name: 'Laravel', desc: 'Elegant PHP framework for robust and expressive apps.', bg: 'bg-[#FF2D20]/10', fg: 'text-[#FF2D20]' },
+  { icon: 'nodes', name: 'SBERT', desc: 'Semantic embeddings for search, similarity, and NLP tasks.', bg: 'bg-accent/10', fg: 'text-accent' },
+  { icon: 'astro', name: 'Astro', desc: 'Modern static site builder for fast, content-driven sites.', bg: 'bg-ink/10', fg: 'text-ink' },
+  { icon: 'tailwindcss', name: 'Tailwind CSS', desc: 'Utility-first CSS framework for rapid UI development.', bg: 'bg-[#38BDF8]/10', fg: 'text-[#38BDF8]' },
 ]
 ---
 
-<section id="stack" class="bg-cream px-6 sm:px-8 pb-20">
+<section id="stack" class="px-6 sm:px-8 pb-20">
   <div class="max-w-6xl mx-auto">
 
-    <div class="flex items-baseline justify-between border-b border-cream-border pb-5 mb-8 reveal">
-      <h2 class="font-serif text-2xl text-ink">Stack</h2>
-      <span class="font-mono text-[11px] text-muted">what i work with</span>
+    <div class="flex items-center gap-2 mb-2 reveal">
+      <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+      <p class="text-muted-2 text-xs font-medium uppercase tracking-wide">Tech Stack</p>
     </div>
+    <h2 class="font-sans font-bold text-2xl sm:text-3xl tracking-[-0.02em] text-ink mb-8 reveal">Technologies I Work With</h2>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-      {categories.map(cat => (
-        <div class="bg-white border border-cream-border rounded-2xl p-6 reveal">
-          <p class="font-mono text-[10px] text-black/80 uppercase tracking-[0.12em] mb-4">{cat.label}</p>
-          <div class="flex flex-wrap gap-1.5">
-            {cat.items.map(item => (
-              <span class="font-mono text-[10px] px-2.5 py-1 rounded-full border text-muted border-cream-border">
-                {item}
-              </span>
-            ))}
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      {techs.map(tech => (
+        <div class="bg-surface border border-border rounded-2xl p-5 reveal">
+          <div class={`w-11 h-11 rounded-xl ${tech.bg} ${tech.fg} flex items-center justify-center mb-4`}>
+            <Icon name={tech.icon} class="w-5 h-5" />
           </div>
+          <p class="font-sans font-semibold text-sm text-ink mb-1">{tech.name}</p>
+          <p class="text-muted text-xs leading-relaxed">{tech.desc}</p>
         </div>
       ))}
     </div>

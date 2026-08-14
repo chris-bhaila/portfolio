@@ -1,65 +1,83 @@
 ---
-const stack = [
-  'Python', 'Laravel', 'SBERT', 'DBSCAN',
-  'Random Forest', 'scikit-learn', 'PHP',
-  'Tailwind CSS', 'MySQL', 'Astro',
-  'Cosine Similarity', 'Decision Tree', 'REST APIs',
-  'Postgres', 'Render', 'Vercel', 'GitHub', 'NLP', 'LLMs',
-  'Python', 'Laravel', 'SBERT', 'DBSCAN',
-  'Random Forest', 'scikit-learn', 'PHP',
-  'Tailwind CSS', 'MySQL', 'Astro',
-  'Cosine Similarity', 'Decision Tree', 'REST APIs',
-  'Postgres', 'Render', 'Vercel', 'GitHub', 'NLP', 'LLMs',
-]
+import Icon from './Icon.astro'
 ---
 
-<section class="bg-dark min-h-[calc(100dvh-3.6rem)] flex flex-col">
+<section class="px-6 sm:px-8 pt-16 pb-20 sm:pt-24 sm:pb-28">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
 
-  <!-- Center content takes all available space -->
-  <div class="flex-1 flex flex-col items-center justify-center text-center px-6 sm:px-8 py-12">
+    <!-- Text -->
+    <div class="reveal">
+      <p class="text-muted text-sm font-medium mb-3">Hi, I'm</p>
 
-    <!-- Eyebrow -->
-    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mb-7">
-      <div class="flex items-center gap-3">
-        <span class="w-6 h-px bg-accent hidden sm:inline-block"></span>
-        <p class="font-mono text-[10.5px] tracking-[0.14em] uppercase text-white/30">
-          Web Dev · AI/ML Engineer
-        </p>
+      <h1 class="font-sans font-extrabold text-[clamp(2.8rem,7vw,5.2rem)] leading-[0.95] tracking-[-0.03em] text-ink mb-4">
+        Chris Bhaila
+      </h1>
+
+      <p class="text-muted text-[15px] leading-relaxed mb-8">
+        Fullstack Web Developer &amp; AI/ML Engineer<br class="hidden sm:inline" />
+        based in Kathmandu, Nepal 🇳🇵
+      </p>
+
+      <div class="w-10 h-px bg-border mb-8"></div>
+
+      <h2 class="font-sans font-semibold text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-ink max-w-xl mb-6">
+        Intelligent web products that <em class="text-accent font-semibold italic">think</em>, look good, and ship.
+      </h2>
+
+      <p class="text-muted text-[15px] leading-relaxed max-w-lg mb-10">
+        I build end-to-end web applications powered by modern technologies and
+        AI that solve real-world problems and deliver exceptional user experiences.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+        <a
+          href="#work"
+          class="inline-flex items-center gap-2 bg-ink text-white text-sm font-medium rounded-full px-6 py-3 hover:bg-ink/85 transition-colors duration-200"
+        >
+          View My Work
+          <Icon name="arrow-up-right" class="w-4 h-4" />
+        </a>
+        <a
+          href="/files/Chris_Bhaila_Resume.pdf"
+          target="_blank"
+          class="inline-flex items-center gap-2 text-ink text-sm font-medium border border-border rounded-full px-6 py-3 hover:border-ink/30 transition-colors duration-200"
+        >
+          Download Resume
+          <Icon name="download" class="w-4 h-4" />
+        </a>
       </div>
-      <span class="w-1.5 h-1.5 rounded-full bg-white/10 hidden sm:inline-block"></span>
-      <span class="font-mono text-[10.5px] tracking-[0.1em] text-accent flex items-center gap-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>
-        Open to work
-      </span>
     </div>
 
-    <!-- Name -->
-    <h1 class="font-serif text-[clamp(2.8rem,9vw,7rem)] leading-none tracking-[-0.03em] text-white/90 mb-5">
-      Chris Bhaila<span class="text-accent">.</span>
-    </h1>
+    <!-- Decorative graphic -->
+    <div class="reveal relative h-[320px] sm:h-[420px] hidden lg:block">
+      <div class="absolute inset-0 dot-grid opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]"></div>
 
-    <!-- Description -->
-    <p class="text-[13px] text-white/30 leading-relaxed max-w-sm mb-8">
-      Building <span class="text-white/55 font-medium">intelligent web products</span> — from
-      trained models to deployed interfaces. Based in Kathmandu.
-    </p>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="relative w-64 h-64 sm:w-80 sm:h-80">
+          <div class="absolute inset-0 rounded-full bg-accent/20 blur-3xl"></div>
+          <div class="absolute inset-6 rounded-full border border-accent/25"></div>
+          <div class="absolute inset-14 rounded-full border border-accent/20"></div>
+          <div class="absolute inset-24 rounded-full border border-accent/30"></div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-16 h-16 rounded-2xl bg-ink flex items-center justify-center text-white font-extrabold text-xl rotate-6">
+              CB
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <!-- CTAs -->
-    <div class="flex flex-col sm:flex-row items-center gap-3">
-      <a
-        href="#work"
-        class="font-mono text-[11.5px] font-medium tracking-[0.06em] uppercase bg-accent text-dark px-6 py-2.5 hover:opacity-85 transition-opacity duration-150"
-      >
-        View my work
-      </a>
-      <a
-        href="#contact"
-        class="font-mono text-[11.5px] tracking-[0.06em] uppercase text-white/30 border border-white/10 px-6 py-2.5 hover:text-white/60 hover:border-white/25 transition-colors duration-150"
-      >
-        Get in touch
-      </a>
+      <span class="absolute top-6 right-6 text-border">
+        <Icon name="plus" class="w-4 h-4" />
+      </span>
+      <span class="absolute bottom-10 left-4 text-border">
+        <Icon name="plus" class="w-4 h-4" />
+      </span>
+
+      <div class="absolute bottom-4 left-2 flex items-center gap-2">
+        <span class="w-6 h-px bg-border"></span>
+        <p class="text-muted-2 text-xs">AI meets craftsmanship.</p>
+      </div>
     </div>
 
   </div>
-
 </section>

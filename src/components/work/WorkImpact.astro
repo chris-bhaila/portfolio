@@ -8,20 +8,20 @@ interface Props {
 const { project } = Astro.props
 ---
 
-<section class="bg-dark px-8 py-16 border-b border-white/[0.06]">
+<section class="px-6 sm:px-8 py-12 border-t border-border">
   <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-10">
 
     <div>
-      <p class="font-mono text-md font-bold tracking-[0.12em] uppercase text-white/20 mb-1">
-        — Impact
+      <p class="text-muted-2 text-xs font-medium uppercase tracking-wide">
+        Impact
       </p>
     </div>
 
     <ul class="flex flex-col gap-4">
       {project.impact.map((item) => (
         <li class="flex items-start gap-4">
-          <span class="w-px h-4 bg-accent/40 mt-1 flex-shrink-0"></span>
-          <p class="text-[14px] text-white/50 leading-relaxed">{item}</p>
+          <span class="w-px h-4 bg-accent/50 mt-1.5 flex-shrink-0"></span>
+          <p class="text-[15px] text-muted leading-relaxed">{item}</p>
         </li>
       ))}
     </ul>

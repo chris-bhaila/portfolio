@@ -8,18 +8,18 @@ interface Props {
 const { project } = Astro.props
 ---
 
-<section class="bg-dark px-8 py-16 border-b border-white/[0.06]">
+<section class="px-6 sm:px-8 py-12 border-t border-border">
   <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-10">
 
     <div>
-      <p class="font-mono text-md font-bold tracking-[0.12em] uppercase text-white/20 mb-1">
-        — Stack
+      <p class="text-muted-2 text-xs font-medium uppercase tracking-wide">
+        Stack
       </p>
     </div>
 
     <div class="flex flex-wrap gap-2">
       {project.stack.map((tech) => (
-        <span class="font-mono text-[11px] tracking-[0.06em] px-3 py-1.5 border border-white/10 text-white/40">
+        <span class="text-[12px] px-3 py-1.5 rounded-full border border-border text-muted">
           {tech}
         </span>
       ))}
