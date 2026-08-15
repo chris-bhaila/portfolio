@@ -1,5 +1,6 @@
 ---
 import type { Project } from '../../data/projects'
+import Icon from '../Icon.astro'
 
 interface Props {
   project: Project
@@ -17,14 +18,38 @@ const { project } = Astro.props
       </p>
     </div>
 
-    <ul class="flex flex-col gap-4">
-      {project.impact.map((item) => (
-        <li class="flex items-start gap-4">
-          <span class="w-px h-4 bg-accent/50 mt-1.5 flex-shrink-0"></span>
-          <p class="text-[15px] text-muted leading-relaxed">{item}</p>
-        </li>
-      ))}
-    </ul>
+    {project.impactStats ? (
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        {project.impactStats.map((stat) => (
+          <div class="p-5 rounded-2xl border border-border bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-accent/40">
+            {'value' in stat ? (
+              <>
+                <span class="block font-display font-bold text-3xl sm:text-4xl tracking-[-0.02em] text-accent">
+                  {stat.value}
+                </span>
+                <p class="text-[13px] text-muted leading-snug mt-2">{stat.label}</p>
+              </>
+            ) : (
+              <>
+                <div class="w-9 h-9 rounded-lg bg-accent/10 text-accent flex items-center justify-center mb-3">
+                  <Icon name={stat.icon} class="w-4.5 h-4.5" />
+                </div>
+                <p class="text-[13px] text-muted leading-snug">{stat.phrase}</p>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    ) : (
+      <ul class="flex flex-col gap-4">
+        {project.impact.map((item) => (
+          <li class="flex items-start gap-4">
+            <span class="w-px h-4 bg-accent/50 mt-1.5 flex-shrink-0"></span>
+            <p class="text-[15px] text-muted leading-relaxed">{item}</p>
+          </li>
+        ))}
+      </ul>
+    )}
 
   </div>
 </section>

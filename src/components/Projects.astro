@@ -2,9 +2,9 @@
 import { projects } from "../data/projects";
 import Icon from './Icon.astro'
 
-const mlStack = new Set(['SBERT', 'DBSCAN', 'Random Forest', 'scikit-learn', 'Cosine Similarity', 'all-MiniLM-L6-v2']);
-const mlProjects = projects.filter((p) => p.stack.some((s) => mlStack.has(s)));
-const fullstackProjects = projects.filter((p) => !mlProjects.includes(p));
+const byCategoryOrder = (a: typeof projects[number], b: typeof projects[number]) => b.category_order - a.category_order;
+const mlProjects = projects.filter((p) => p.category === 'AI/ML').sort(byCategoryOrder);
+const fullstackProjects = projects.filter((p) => p.category === 'Fullstack').sort(byCategoryOrder);
 
 const groups = [
   {

@@ -29,11 +29,16 @@ const {
       // Blocking + inline so this runs before first paint, avoiding a flash of
       // the wrong theme. Explicit choice (localStorage) wins; otherwise falls
       // back to the OS-level preference.
-      (function () {
+      function applyTheme() {
         const stored = localStorage.getItem("theme");
         const isDark = stored ? stored === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
         document.documentElement.classList.toggle("dark", isDark);
-      })();
+      }
+      applyTheme();
+      // Astro's view-transition swap replaces the <html> element's attributes
+      // with the freshly server-rendered page's (which has no "dark" class),
+      // wiping out the client-side choice on every navigation. Reapply it.
+      document.addEventListener("astro:after-swap", applyTheme);
     </script>
   </head>
   <body class="bg-bg text-ink font-sans antialiased">

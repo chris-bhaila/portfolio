@@ -5,7 +5,9 @@ const techs = [
   { icon: 'python', name: 'Python', desc: 'Core language for backend, automation, and AI/ML solutions.', bg: 'bg-[#3776AB]/15', fg: 'text-[#5A9BD4]' },
   { icon: 'django', name: 'Django', desc: 'High-level Python web framework for scalable applications.', bg: 'bg-[#0C4B33]/25', fg: 'text-[#2ECC91]' },
   { icon: 'laravel', name: 'Laravel', desc: 'Elegant PHP framework for robust and expressive apps.', bg: 'bg-[#FF2D20]/15', fg: 'text-[#FF6A5E]' },
-  { icon: 'nodes', name: 'SBERT', desc: 'Semantic embeddings for search, similarity, and NLP tasks.', bg: 'bg-[#6D5EF0]/15', fg: 'text-[#9186F5]' },
+  { icon: 'database', name: 'MySQL', desc: 'Relational database powering data storage across web applications.', bg: 'bg-[#4479A1]/15', fg: 'text-[#5D9BC9]' },
+  { icon: 'database', name: 'PostgreSQL', desc: 'Robust relational database for production-grade data pipelines.', bg: 'bg-[#336791]/15', fg: 'text-[#6BA3D6]' },
+  { icon: 'nodes', name: 'scikit-learn', desc: 'Machine learning library for modeling, clustering, and prediction.', bg: 'bg-[#F7931E]/15', fg: 'text-[#F7931E]' },
   { icon: 'astro', name: 'Astro', desc: 'Modern static site builder for fast, content-driven sites.', bg: 'bg-white/10', fg: 'text-white' },
   { icon: 'tailwindcss', name: 'Tailwind CSS', desc: 'Utility-first CSS framework for rapid UI development.', bg: 'bg-[#38BDF8]/15', fg: 'text-[#38BDF8]' },
 ]
@@ -22,9 +24,9 @@ const techs = [
     </div>
     <h2 class="font-display font-bold text-2xl sm:text-3xl tracking-[-0.02em] text-white mb-8 reveal">Technologies I Work With</h2>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
       {techs.map((tech, ti) => (
-        <div class="group bg-white/[0.04] border border-white/10 rounded-2xl p-5 reveal transition-all duration-300 hover:-translate-y-1 hover:border-[#6D5EF0]/40 hover:shadow-[0_12px_30px_rgba(109,94,240,0.18)]" style={`--reveal-delay: ${(ti % 3) * 80}ms`}>
+        <div class="group bg-white/[0.04] border border-white/10 rounded-2xl p-5 reveal cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:border-[#6D5EF0]/40 hover:shadow-[0_12px_30px_rgba(109,94,240,0.18)]" style={`--reveal-delay: ${(ti % 4) * 80}ms`}>
           <div class={`w-11 h-11 rounded-xl ${tech.bg} ${tech.fg} flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}>
             <Icon name={tech.icon} class="w-5 h-5" />
           </div>

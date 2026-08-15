@@ -6,6 +6,18 @@ interface Props {
 }
 
 const { project } = Astro.props
+
+const branches = project.architecture?.branches ?? []
+const branchWidth = 80
+const branchXs = branches.map((_, i) => (i + 0.5) * branchWidth)
+const branchCenterX = branchXs.length ? (branchXs[0] + branchXs[branchXs.length - 1]) / 2 : 0
+const branchPath = branches.length > 1
+  ? [
+      `M${branchCenterX} 0V14`,
+      `M${branchXs[0]} 14H${branchXs[branchXs.length - 1]}`,
+      ...branchXs.map((x) => `M${x} 14V28`),
+    ].join(' ')
+  : ''
 ---
 
 <section class="px-6 sm:px-8 py-12 border-t border-border">
@@ -47,6 +59,52 @@ const { project } = Astro.props
         <p class="text-[15px] text-muted leading-relaxed">
           {project.approach}
         </p>
+
+        {project.architecture && (
+          <div class="mt-8 p-6 rounded-2xl border border-border bg-surface">
+            <p class="font-mono text-muted-2 text-[11px] font-medium uppercase tracking-wide mb-5">
+              System flow
+            </p>
+
+            <div class="flex flex-col sm:flex-row sm:items-center sm:flex-wrap gap-3">
+              {project.architecture.flow.map((node, i) => (
+                <>
+                  <div class="px-4 py-2.5 rounded-lg border border-border bg-bg text-ink text-[13px] font-mono font-medium whitespace-nowrap">
+                    {node}
+                  </div>
+                  {i < project.architecture!.flow.length - 1 && (
+                    <svg class="w-4 h-4 text-accent shrink-0 rotate-90 sm:rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg>
+                  )}
+                </>
+              ))}
+            </div>
+
+            {branches.length > 0 && (
+              <div class="mt-6">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="w-4 h-px bg-border"></span>
+                  <p class="font-mono text-muted-2 text-[11px] uppercase tracking-wide">
+                    {project.architecture.branchFrom} branches by role
+                  </p>
+                </div>
+
+                <svg viewBox={`0 0 ${branches.length * branchWidth} 28`} class="w-full max-w-xs text-border" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d={branchPath} />
+                </svg>
+
+                <div class="flex flex-wrap gap-2 -mt-px">
+                  {branches.map((role) => (
+                    <span class="px-3 py-1.5 rounded-full border border-accent/30 text-accent text-[12px] font-mono">
+                      {role}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
     </div>

@@ -10,15 +10,16 @@ import WorkCallout from '../../components/work/WorkCallout.astro'
 import WorkStack from '../../components/work/WorkStack.astro'
 import WorkDetailGallery from '../../components/work/WorkDetailGallery.astro'
 import WorkImpact from '../../components/work/WorkImpact.astro'
+import WorkNextProject from '../../components/work/WorkNextProject.astro'
 
 export async function getStaticPaths() {
-  return projects.map((project: typeof projects[number]) => ({
+  return projects.map((project: typeof projects[number], i: number) => ({
     params: { slug: project.slug },
-    props: { project },
+    props: { project, nextProject: projects[(i + 1) % projects.length] },
   }))
 }
 
-const { project } = Astro.props as { project: Project }
+const { project, nextProject } = Astro.props as { project: Project; nextProject: Project }
 ---
 
 <Layout title={`${project.title} — Chris Bhaila`}>
@@ -30,4 +31,5 @@ const { project } = Astro.props as { project: Project }
   <WorkStack project={project} />
   <WorkDetailGallery project={project} />
   <WorkImpact project={project} />
+  <WorkNextProject project={nextProject} />
 </Layout>

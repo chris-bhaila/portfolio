@@ -1,7 +1,9 @@
 export type Project = {
   slug: string
   title: string
-  type: 'Client project' | 'Academic project' | 'Independent project'
+  type: 'Client project' | 'Academic project' | 'Independent project' | 'Internship project'
+  category: 'AI/ML' | 'Fullstack'
+  category_order: number
   year: string
   live: string | null
   github: string | null
@@ -13,6 +15,8 @@ export type Project = {
   overview: string
   approach: string
   impact: string[]
+  impactStats: ({ value: string; label: string } | { icon: string; phrase: string })[] | null
+  architecture: { flow: string[]; branchFrom?: string; branches?: string[] } | null
   stack: string[]
   image: string | null
   images: string[] | null
@@ -22,9 +26,11 @@ export const projects: Project[] = [
   {
     slug: 'traffic-hotspot',
     title: 'Traffic Accident Hotspot Detection',
+    category: 'AI/ML',
+    category_order: 2,
     type: 'Independent project',
     year: '2026',
-    live: 'https://traffic-hotspot.onrender.com',
+    live: null,
     github: 'https://github.com/chris-bhaila/Traffic-Accident-Hotspot-Detection-System',
     tagline: 'Live ML system that clusters 1,498 real accident records to identify hazard zones and predict risk by time, weather, and road type.',
     problem: 'Road safety in Kathmandu lacks data-driven infrastructure — accident patterns exist in the raw data but aren\'t visible or actionable to anyone without a way to surface them.',
@@ -39,6 +45,8 @@ export const projects: Project[] = [
       'Risk prediction by time, weather, and road type — live in production',
       'Deployed on Render with a fully interactive map interface',
     ],
+    impactStats: null,
+    architecture: null,
     stack: ['Python', 'Django', 'scikit-learn', 'DBSCAN', 'Random Forest', 'PostgreSQL', 'Leaflet.js', 'Chart.js', 'Open-Meteo', 'OpenStreetMap', 'Render'],
     image: '/images/hero-image/traffic.png',
     images: [
@@ -51,6 +59,8 @@ export const projects: Project[] = [
   {
     slug: 'edunest',
     title: 'EduNest',
+    category: 'Fullstack',
+    category_order: 3,
     type: 'Client project',
     year: '2026',
     live: 'https://lms.recc.com.np',
@@ -68,6 +78,8 @@ export const projects: Project[] = [
       'Google SSO reduced signup friction significantly',
       'Role-based access control covering instructor, student, and admin flows',
     ],
+    impactStats: null,
+    architecture: null,
     stack: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS', 'Alpine.js', 'Google OAuth'],
     image: '/images/hero-image/lms.png',
     images: null,
@@ -75,6 +87,8 @@ export const projects: Project[] = [
   {
     slug: 'dwellcasa',
     title: 'DwellCasa',
+    category: 'Fullstack',
+    category_order: 2,
     type: 'Client project',
     year: '2026',
     live: 'https://dwellcasanepal.com',
@@ -92,6 +106,17 @@ export const projects: Project[] = [
       'Full admin panel covering listings, bookings, and staff management',
       'Clean architecture that makes future feature additions straightforward',
     ],
+    impactStats: [
+      { value: '3', label: 'staff roles with dedicated access — front desk, manager, admin' },
+      { value: '2026', label: 'shipped and live for a boutique hotel in Lalitpur' },
+      { value: '3', label: 'core admin modules — listings, bookings & staff' },
+      { icon: 'layers', phrase: 'Multi-location inventory built into the core architecture' },
+    ],
+    architecture: {
+      flow: ['Client', 'Laravel', 'Repository Layer', 'MySQL'],
+      branchFrom: 'Laravel',
+      branches: ['Front Desk', 'Manager', 'Admin'],
+    },
     stack: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS', 'Alpine.js', 'Google OAuth'],
     image: '/images/hero-image/dwellcasa.png',
     images: [
@@ -105,6 +130,8 @@ export const projects: Project[] = [
   {
     slug: 'motovault',
     title: 'MotoVault',
+    category: 'AI/ML',
+    category_order: 1,
     type: 'Academic project',
     year: '2024',
     live: null,
@@ -121,8 +148,37 @@ export const projects: Project[] = [
       'all-MiniLM-L6-v2 embeddings for fast, quality semantic retrieval',
       'Cosine similarity ranking across the full product catalogue',
     ],
+    impactStats: null,
+    architecture: null,
     stack: ['Python', 'SBERT', 'all-MiniLM-L6-v2', 'Cosine Similarity', 'scikit-learn'],
     image: '/images/hero-image/motovault.png',
+    images: null,
+  },
+  {
+    slug: 'floranepal',
+    title: 'FloraNepal',
+    category: 'Fullstack',
+    category_order: 1,
+    type: 'Internship project',
+    year: '2024',
+    live: 'https://a.floranepal.com',
+    github: null,
+    tagline: 'A hotspot for plant sellers to showcase their products and for buyers to discover and purchase them — built with a clean, modern UI.',
+    problem: 'Plant sellers in Nepal lacked a dedicated online space to showcase their products, and buyers had no central place to discover and purchase plants — the market was fragmented and offline.',
+    role: 'Solo internship project — I designed and built the entire platform, including the product listing flow, search and discovery features, and a clean, modern UI for both sellers and buyers.',
+    stat: null,
+    pullQuote: 'A dedicated online marketplace for plant sellers and buyers in Nepal.',
+    overview: 'FloraNepal is an online marketplace that connects plant sellers with buyers. Sellers can create listings for their plants, while buyers can browse, search, and purchase them. The platform provides a clean, modern UI that makes it easy for both parties to interact.',
+    approach: 'The platform was built with a focus on user experience, ensuring that both sellers and buyers have intuitive interfaces. Search functionality was implemented to allow buyers to easily find plants based on various criteria. The backend was designed to handle product listings, user accounts, and transactions securely and efficiently.',
+    impact: [
+      'Centralized marketplace for plant sellers and buyers in Nepal',
+      'Clean, modern UI for easy navigation and interaction',
+      'Secure handling of product listings and transactions',
+    ],
+    impactStats: null,
+    architecture: null,
+    stack: ['Laravel', 'MySQL', 'Alpine.js', 'Tailwind CSS'],
+    image: '/images/hero-image/floranepal1.png',
     images: null,
   },
 ]
