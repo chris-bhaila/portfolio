@@ -215,7 +215,7 @@ export const projects: Project[] = [
       branches: ['Lexical (Shingling + Jaccard)', 'Semantic (SBERT + Cosine)', 'Web Search + Scrape'],
     },
     stack: ['Laravel', 'PHP', 'Python', 'FastAPI', 'Sentence-BERT', 'MySQL', 'Tailwind CSS', 'Alpine.js', 'Google Custom Search API', 'BeautifulSoup'],
-    image: '/images/hero-image/integritycheck.png',
+    image: 'images/integrity-check/image.png',
     images: null,
   },
 ]
